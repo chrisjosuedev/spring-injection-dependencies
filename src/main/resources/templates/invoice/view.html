@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Invoice with Injection Dependencies</title>
+</head>
+<body>
+  <h1 th:text="${title}"></h1>
+  <h2 th:text="${order.description}"></h2>
+  <div> Client: <span th:text="${order.client.name + ' ' + order.client.lastName}"></span></div>
+  <p> Details </p>
+  <table>
+    <thead>
+      <tr>
+        <th>Product Name</th>
+        <th>Precio</th>
+        <th>Amount</th>
+        <th>Total</th>
+      </tr>
+    </thead>
+    <tbody>
+    <tr th:each="item : ${order.items}">
+      <td th:text="${item.product.nameProduct}"></td>
+      <td th:text="${item.product.price}"></td>
+      <td th:text="${item.amount}"></td>
+      <td th:text="${item.calculateSubtotal()}"></td>
+    </tr>
+    </tbody>
+  </table>
+</body>
+</html>
